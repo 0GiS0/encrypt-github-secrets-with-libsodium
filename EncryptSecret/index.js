@@ -10,14 +10,14 @@ module.exports = async function(context, req) {
     const sodium = _sodium;
 
     // Convert Secret & Base64 key to Uint8Array.
-    let binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL) //Equivalent of Buffer.from(key, 'base64')
-    let binsec = sodium.from_string(secret) // Equivalent of Buffer.from(secret)
+    let binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL);
+    let binsec = sodium.from_string(secret);
 
     //Encrypt the secret using LibSodium
-    let encBytes = sodium.crypto_box_seal(binsec, binkey) // Similar to tweetsodium.seal(binsec,binkey)
+    let encBytes = sodium.crypto_box_seal(binsec, binkey);
 
     // Convert encrypted Uint8Array to Base64
-    let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL) //Equivalent of Buffer.from(encBytes).toString('base64')
+    let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
 
     console.log(output)
 
